@@ -1,0 +1,36 @@
+{
+  "name": "bentools/violin",
+  "type": "library",
+  "license": "MIT",
+  "description": "A multibyte string manipulation library focused on performance.",
+  "keywords": ["multibyte", "string", "strings", "manipulation", "utf-8", "utf8", "ascii", "oop", "mbstring", "str"],
+  "require": {
+    "symfony/polyfill-mbstring": "~1.1"
+  },
+  "require-dev": {
+    "php": ">=7.1",
+    "symfony/var-dumper": "^4.1",
+    "phpunit/phpunit": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "BenTools\\Violin\\": "src"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BenTools\\Violin\\Tests\\": "tests"
+    },
+    "files": [
+      "vendor/symfony/var-dumper/Resources/functions/dump.php"
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
