@@ -359,7 +359,7 @@ final class Violin implements \Countable
     public function endsWith($str): bool
     {
         $str = self::tune($str);
-        return (string) $this->substr(-count($str)) === (string) $str;
+        return $this->indexOfLast($str) === (count($this) - count($str));
     }
 
     /**
