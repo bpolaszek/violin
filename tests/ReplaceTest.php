@@ -14,5 +14,8 @@ final class ReplaceTest extends TestCase
         $this->assertEquals('😂😂😂😂🤗', (string) Violin::tune('🤗🤗😂😂🤗')->replaceWithPairs(['🤗🤗' => '😂😂']));
     }
 
-
+    public function testTidy()
+    {
+        $this->assertEquals('"Il est là..."', Violin::tune('“Il est là…”')->tidy());
+    }
 }

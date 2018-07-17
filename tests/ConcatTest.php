@@ -2,6 +2,7 @@
 
 namespace BenTools\Violin\Tests;
 
+use BenTools\Violin\Violin;
 use PHPUnit\Framework\TestCase;
 use function BenTools\Violin\string;
 
@@ -20,4 +21,9 @@ final class ConcatTest extends TestCase
         $this->assertEquals('😂🤗', (string) string('🤗')->prepend('😂'));
     }
 
+
+    public function testSurround()
+    {
+        $this->assertEquals('😂 foobar 😂', Violin::tune('foobar')->surround('😂', ' '));
+    }
 }

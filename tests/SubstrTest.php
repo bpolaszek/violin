@@ -151,4 +151,10 @@ final class SubstrTest extends TestCase
         $this->assertEquals('/foo🤗/bar🤗', (string) Violin::tune('/foo🤗/bar🤗/baz')->substringBeforeLast('🤗', true));
         $this->assertEquals('/foo🤗/bar', (string) Violin::tune('/foo🤗/bar🤗/baz')->substringBeforeLast('🤗', false));
     }
+
+    public function testTruncate()
+    {
+        $this->assertEquals('🤗 Il était u...', (string) Violin::tune('🤗 Il était une fois')->truncate(15, '...'));
+        $this->assertEquals('🤗 Il était...', (string) Violin::tune('🤗 Il était une fois')->truncate(15, '...', true));
+    }
 }

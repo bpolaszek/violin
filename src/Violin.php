@@ -632,6 +632,63 @@ final class Violin implements \Countable
     }
 
     /**
+     * @param string $str
+     * @param string $separator
+     * @return Violin
+     */
+    public function surround(string $str, string $separator = ''): self
+    {
+        return $this->fork($str . $separator . $this . $separator . $str);
+    }
+
+    /**
+     * @return Violin
+     */
+    public function tidy(): self
+    {
+        $str = \preg_replace([
+            '/\x{2026}/u',
+            '/[\x{201C}\x{201D}]/u',
+            '/[\x{2018}\x{2019}]/u',
+            '/[\x{2013}\x{2014}]/u',
+        ], [
+            '...',
+            '"',
+            "'",
+            '-',
+        ], $this->str);
+
+        return $this->fork($str);
+    }
+
+    /**
+     * @param int    $totalLength
+     * @param string $endWith
+     * @param bool   $safe
+     * @return Violin
+     * @throws \InvalidArgumentException
+     */
+    public function truncate(int $totalLength, string $endWith = '...', bool $safe = false): self
+    {
+        $cnt = count($this);
+        if ($cnt <= $totalLength) {
+            return $this;
+        }
+
+        $substr = $this->first($totalLength - count(self::tune($endWith)));
+
+        if (true === $safe && $this->indexOf(' ') !== $totalLength) {
+            $lastPos = $substr->indexOfLast(' ');
+            if (false !== $lastPos) {
+                $substr = $this->first($lastPos);
+            }
+        }
+
+        return $this->fork($substr . $endWith);
+    }
+
+
+    /**
      * Violin constructor disabled - use the tune() static method instead.
      * Instanciating from a clone instead of new Violin() is about 3x faster.
      */
