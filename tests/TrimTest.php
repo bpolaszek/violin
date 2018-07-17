@@ -48,4 +48,9 @@ final class TrimTest extends TestCase
         $this->assertEquals('🤗foo🤗bar', (string) Violin::tune('🤗foo🤗bar🤗')->trimRight('🤗'));
     }
 
+    public function testCollapseWhitespace()
+    {
+        $this->assertEquals('foo bar', (string) Violin::tune('foo         bar')->collapseWhitespace());
+        $this->assertEquals('foo bar', (string) Violin::tune("foo\t\t\n\r\tbar")->collapseWhitespace());
+    }
 }

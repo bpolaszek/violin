@@ -10,6 +10,11 @@ use function BenTools\Violin\strtoupper;
 final class CaseTest extends TestCase
 {
 
+    public function testDelimiter()
+    {
+        $this->assertEquals('foo-bar', (string) Violin::tune('foo       bar')->delimit('-'));
+    }
+
     /**
      * @dataProvider toUpperCaseSet
      */
@@ -146,5 +151,23 @@ final class CaseTest extends TestCase
         yield ['fòô', false];
         yield ['Fòô', false];
         yield ['FÒÔ', true];
+    }
+
+    /**
+     * @dataProvider slugifySet
+     */
+    public function testSlugify($tested, $expected)
+    {
+        $this->assertEquals($expected, (string) Violin::tune($tested)->slugify('-'));
+    }
+
+    public function slugifySet()
+    {
+        yield ['foo bar', 'foo-bar'];
+        yield ['foo bar', 'foo-bar'];
+        yield ['fOO BAR', 'foo-bar'];
+        yield ['fòô bàř', 'foo-bar'];
+        yield ['fòô bàř', 'foo-bar'];
+        yield [' 🤗 fÒÔ   BÀŘ ', 'foo-bar'];
     }
 }
