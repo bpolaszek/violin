@@ -43,104 +43,104 @@ function is_blank($str): bool
 
 /**
  * @param $str
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function strtoupper($str): Violin
+function strtoupper($str): string
 {
-    return string($str)->toUpperCase();
+    return (string) string($str)->toUpperCase();
 }
 
 /**
  * @param $str
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function strtolower($str): Violin
+function strtolower($str): string
 {
-    return string($str)->toLowerCase();
+    return (string) string($str)->toLowerCase();
 }
 
 /**
  * @param          $str
  * @param int      $start
  * @param int|null $length
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function substr($str, int $start, int $length = null): Violin
+function substr($str, int $start, int $length = null): string
 {
-    return string($str)->substr($start, $length);
+    return (string) string($str)->substr($start, $length);
 }
 
 /**
  * @param      $str
  * @param      $separator
  * @param bool $include
- * @return Violin|null
+ * @return null|string
  * @throws \InvalidArgumentException
  */
-function substring_after_first($str, $separator, bool $include = false): ?Violin
+function substring_after_first($str, $separator, bool $include = false): ?string
 {
-    return string($str)->substringAfterFirst($separator, $include);
+    return (string) string($str)->substringAfterFirst($separator, $include);
 }
 
 /**
  * @param      $str
  * @param      $separator
  * @param bool $include
- * @return Violin|null
+ * @return null|string
  * @throws \InvalidArgumentException
  */
-function substring_after_last($str, $separator, bool $include = false): ?Violin
+function substring_after_last($str, $separator, bool $include = false): ?string
 {
-    return string($str)->substringAfterLast($separator, $include);
+    return (string) string($str)->substringAfterLast($separator, $include);
 }
 
 /**
  * @param      $str
  * @param      $separator
  * @param bool $include
- * @return Violin|null
+ * @return null|string
  * @throws \InvalidArgumentException
  */
-function substring_before_first($str, $separator, bool $include = false): ?Violin
+function substring_before_first($str, $separator, bool $include = false): ?string
 {
-    return string($str)->substringBeforeFirst($separator, $include);
+    return (string) string($str)->substringBeforeFirst($separator, $include);
 }
 
 /**
  * @param      $str
  * @param      $separator
  * @param bool $include
- * @return Violin|null
+ * @return null|string
  * @throws \InvalidArgumentException
  */
-function substring_before_last($str, $separator, bool $include = false): ?Violin
+function substring_before_last($str, $separator, bool $include = false): ?string
 {
-    return string($str)->substringBeforeLast($separator, $include);
+    return (string) string($str)->substringBeforeLast($separator, $include);
 }
 
 /**
  * @param     $str
  * @param int $numberOfChars
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function first($str, int $numberOfChars = 1): Violin
+function first($str, int $numberOfChars = 1): string
 {
-    return string($str)->first($numberOfChars);
+    return (string) string($str)->first($numberOfChars);
 }
 
 /**
  * @param     $str
  * @param int $numberOfChars
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function last($str, int $numberOfChars = 1): Violin
+function last($str, int $numberOfChars = 1): string
 {
-    return string($str)->last($numberOfChars);
+    return (string) string($str)->last($numberOfChars);
 }
 
 /**
@@ -190,88 +190,88 @@ function ends_with_any($haystack, $needle): bool
 /**
  * @param $haystack
  * @param $needle
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function ensure_left($haystack, $needle): Violin
+function ensure_left($haystack, $needle): string
 {
-    return string($haystack)->ensureLeft($needle);
+    return (string) string($haystack)->ensureLeft($needle);
 }
 
 /**
  * @param $haystack
  * @param $needle
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function ensure_right($haystack, $needle): Violin
+function ensure_right($haystack, $needle): string
 {
-    return string($haystack)->ensureLeft($needle);
+    return (string) string($haystack)->ensureLeft($needle);
 }
 
 /**
  * @param $haystack
  * @param $needle
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function remove_left($haystack, $needle): Violin
+function remove_left($haystack, $needle): string
 {
-    return string($haystack)->removeLeft($needle);
+    return (string) string($haystack)->removeLeft($needle);
 }
 
 /**
  * @param $haystack
  * @param $needle
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function remove_right($haystack, $needle): Violin
+function remove_right($haystack, $needle): string
 {
-    return string($haystack)->removeRight($needle);
+    return (string) string($haystack)->removeRight($needle);
 }
 
 /**
  * @param        $str
  * @param string $charlist
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function trim($str, string $charlist = " \t\n\r\0\x0B"): Violin
+function trim($str, string $charlist = " \t\n\r\0\x0B"): string
 {
-    return string($str)->trim($charlist);
+    return (string) string($str)->trim($charlist);
 }
 
 /**
  * @param        $str
  * @param string $charlist
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function ltrim($str, string $charlist = " \t\n\r\0\x0B"): Violin
+function ltrim($str, string $charlist = " \t\n\r\0\x0B"): string
 {
-    return string($str)->trimLeft($charlist);
+    return (string) string($str)->trimLeft($charlist);
 }
 
 /**
  * @param        $str
  * @param string $charlist
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function rtrim($str, string $charlist = " \t\n\r\0\x0B"): Violin
+function rtrim($str, string $charlist = " \t\n\r\0\x0B"): string
 {
-    return string($str)->trimRight($charlist);
+    return (string) string($str)->trimRight($charlist);
 }
 
 /**
  * @param $str
- * @return Violin
+ * @return string
  * @throws \InvalidArgumentException
  */
-function strrev($str): Violin
+function strrev($str): string
 {
-    return string($str)->reverse();
+    return (string) string($str)->reverse();
 }
 
 /**
