@@ -131,31 +131,7 @@ final class Violin implements \Countable
      */
     public function toPascalCase(): self
     {
-        $encoding = $this->encoding;
-        $str = $this->trim();
-        $str->str = \preg_replace('/^[-_]+/', '', $str->str);
-
-        $str->str = \preg_replace_callback(
-            '/[-_\s]+(.)?/u',
-            function ($match) use ($encoding) {
-                if (isset($match[1])) {
-                    return (string) $this->fork($match[1], $encoding)->toUpperCase();
-                }
-
-                return '';
-            },
-            $str->str
-        );
-
-        $str->str = \preg_replace_callback(
-            '/[\d]+(.)?/u',
-            function ($match) use ($encoding) {
-                return (string) $this->fork($match[0], $encoding)->toUpperCase();
-            },
-            $str->str
-        );
-
-        return $str;
+        return $this->toCamelCase()->upperCaseFirst();
     }
 
     /**
@@ -221,7 +197,31 @@ final class Violin implements \Countable
      */
     public function toCamelCase(): self
     {
-        return $this->toPascalCase()->lowerCaseFirst();
+        $encoding = $this->encoding;
+        $str = $this->trim();
+        $str->str = \preg_replace('/^[-_]+/', '', $str->str);
+
+        $str->str = \preg_replace_callback(
+            '/[-_\s]+(.)?/u',
+            function ($match) use ($encoding) {
+                if (isset($match[1])) {
+                    return (string) $this->fork($match[1], $encoding)->toUpperCase();
+                }
+
+                return '';
+            },
+            $str->str
+        );
+
+        $str->str = \preg_replace_callback(
+            '/[\d]+(.)?/u',
+            function ($match) use ($encoding) {
+                return (string) $this->fork($match[0], $encoding)->toUpperCase();
+            },
+            $str->str
+        );
+
+        return $str->lowerCaseFirst();
     }
 
     /**

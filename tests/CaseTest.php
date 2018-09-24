@@ -170,4 +170,42 @@ final class CaseTest extends TestCase
         yield ['fòô bàř', 'foo-bar'];
         yield [' 🤗 fÒÔ   BÀŘ ', 'foo-bar'];
     }
+
+    /**
+     * @dataProvider camelCaseSet
+     */
+    public function testToCamelCase($tested, $expected)
+    {
+        $this->assertEquals($expected, (string) Violin::tune($tested)->toCamelCase());
+    }
+
+    public function camelCaseSet()
+    {
+        yield ['foo bar', 'fooBar'];
+        yield ['foo bar', 'fooBar'];
+        yield ['Foo bar', 'fooBar'];
+        yield ['fOO BAR', 'fOOBAR'];
+        yield ['fòô bàř', 'fòôBàř'];
+        yield ['fò ôbàř', 'fòÔbàř'];
+        yield [' 🤗 fÒÔ   BÀŘ ', '🤗FÒÔBÀŘ'];
+    }
+
+    /**
+     * @dataProvider pascalCaseSet
+     */
+    public function testToPascalCase($tested, $expected)
+    {
+        $this->assertEquals($expected, (string) Violin::tune($tested)->toPascalCase());
+    }
+
+    public function pascalCaseSet()
+    {
+        yield ['foo bar', 'FooBar'];
+        yield ['foo bar', 'FooBar'];
+        yield ['Foo BaR', 'FooBaR'];
+        yield ['fOO BAR', 'FOOBAR'];
+        yield ['fòô bàř', 'FòôBàř'];
+        yield ['fò ôbàř', 'FòÔbàř'];
+        yield [' 🤗 fÒÔ   BÀŘ ', '🤗FÒÔBÀŘ'];
+    }
 }
