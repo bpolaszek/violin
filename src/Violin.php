@@ -626,7 +626,7 @@ final class Violin implements \Countable
     {
         $str = $this->toAscii($locale, $replaceUnsupportedBy);
         $str->str = \strtr($str->str, ['@' => $delimiter]);
-        $pattern = '/[^a-zA-Z\d\s-_' . \preg_quote($delimiter) . ']/u';
+        $pattern = '/[^a-zA-Z\d\s' . \preg_quote($delimiter, '/') . ']/u';
         $str->str = \preg_replace($pattern, '', $str);
         return $str->toLowerCase()->delimit($delimiter)->removeLeft($delimiter)->removeRight($delimiter);
     }
