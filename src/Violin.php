@@ -732,11 +732,7 @@ final class Violin implements \Countable
      */
     public static function isStringable($str): bool
     {
-        if (\is_string($str)) {
-            return true;
-        }
-
-        if (null === $str) {
+        if (\is_string($str) || \is_numeric($str) || null === $str) {
             return true;
         }
 
