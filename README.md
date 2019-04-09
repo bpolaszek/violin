@@ -5,7 +5,7 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/bpolaszek/violin.svg?style=flat-square)](https://scrutinizer-ci.com/g/bpolaszek/violin)
 [![Total Downloads](https://poser.pugx.org/bentools/violin/downloads)](https://packagist.org/packages/bentools/violin)
 
-# Violin
+# Violin 🎻
 
 Violin is a multibyte-compliant, OOP string manipulation library.
  
