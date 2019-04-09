@@ -89,7 +89,7 @@ final class Violin implements \Countable
      */
     public function upperCaseFirst(): self
     {
-        return $this->fork($this->first()->toUpperCase() . $this->last(count($this) - 1));
+        return $this->fork($this->first()->toUpperCase() . $this->last(\count($this) - 1));
     }
 
     /**
@@ -123,7 +123,7 @@ final class Violin implements \Countable
      */
     public function lowerCaseFirst(): self
     {
-        return $this->fork($this->first()->toLowerCase() . $this->last(count($this) - 1));
+        return $this->fork($this->first()->toLowerCase() . $this->last(\count($this) - 1));
     }
 
     /**
@@ -231,7 +231,7 @@ final class Violin implements \Countable
      */
     public function substr(int $start, int $length = null): self
     {
-        $length = $length ?? count($this);
+        $length = $length ?? \count($this);
         return $this->isMultibyte() ? $this->fork(\mb_substr($this->str, $start, $length)) : $this->fork(\substr($this->str, $start, $length));
     }
 
@@ -246,7 +246,7 @@ final class Violin implements \Countable
             return null;
         }
 
-        $substr = $this->substr($offset, count($this) - $offset);
+        $substr = $this->substr($offset, \count($this) - $offset);
         if (false === $include) {
             return $substr->removeLeft($separator);
         }
@@ -266,9 +266,9 @@ final class Violin implements \Countable
         }
 
         if (false === $include) {
-            $from = $from + count(self::tune($separator));
+            $from = $from + \count(self::tune($separator));
         }
-        return $this->substr($from, count($this) - $from);
+        return $this->substr($from, \count($this) - $from);
     }
 
     /**
@@ -284,7 +284,7 @@ final class Violin implements \Countable
         }
 
         if (true === $include) {
-            $from = $from + count(self::tune($separator));
+            $from = $from + \count(self::tune($separator));
         }
 
         return $this->substr(0, $from);
@@ -303,7 +303,7 @@ final class Violin implements \Countable
         }
 
         if (true === $include) {
-            $from = $from + count(self::tune($separator));
+            $from = $from + \count(self::tune($separator));
         }
 
         return $this->substr(0, $from);
@@ -334,7 +334,7 @@ final class Violin implements \Countable
     public function startsWith($str): bool
     {
         $str = self::tune($str);
-        return (string) $this->substr(0, count($str)) === (string) $str;
+        return (string) $this->substr(0, \count($str)) === (string) $str;
     }
 
     /**
@@ -359,7 +359,7 @@ final class Violin implements \Countable
     public function endsWith($str): bool
     {
         $str = self::tune($str);
-        return $this->indexOfLast($str) === (count($this) - count($str));
+        return $this->indexOfLast($str) === (\count($this) - \count($str));
     }
 
     /**
@@ -409,7 +409,7 @@ final class Violin implements \Countable
     public function removeLeft($str): self
     {
         if ($this->startsWith($str)) {
-            return $this->last(-count(self::tune($str)));
+            return $this->last(-\count(self::tune($str)));
         }
 
         return $this;
@@ -422,7 +422,7 @@ final class Violin implements \Countable
     public function removeRight($str): self
     {
         if ($this->endsWith($str)) {
-            return $this->first(-count(self::tune($str)));
+            return $this->first(-\count(self::tune($str)));
         }
 
         return $this;
@@ -483,7 +483,7 @@ final class Violin implements \Countable
         }
 
         $reversed = '';
-        for ($offset = count($this); $offset >= 0; $offset--) {
+        for ($offset = \count($this); $offset >= 0; $offset--) {
             $reversed .= \mb_substr($this->str, $offset, 1);
         }
         return $this->fork($reversed, $this->encoding);
@@ -670,12 +670,12 @@ final class Violin implements \Countable
      */
     public function truncate(int $totalLength, string $endWith = '...', bool $safe = false): self
     {
-        $cnt = count($this);
+        $cnt = \count($this);
         if ($cnt <= $totalLength) {
             return $this;
         }
 
-        $substr = $this->first($totalLength - count(self::tune($endWith)));
+        $substr = $this->first($totalLength - \count(self::tune($endWith)));
 
         if (true === $safe && $this->indexOf(' ') !== $totalLength) {
             $lastPos = $substr->indexOfLast(' ');
@@ -709,7 +709,7 @@ final class Violin implements \Countable
 
         if (!self::isStringable($str)) {
             throw new \InvalidArgumentException(
-                sprintf('Expected stringable object, got %s', is_object($str) ? get_class($str) : gettype($str))
+                \sprintf('Expected stringable object, got %s', \is_object($str) ? \get_class($str) : \gettype($str))
             );
         }
 
@@ -732,7 +732,7 @@ final class Violin implements \Countable
      */
     public static function isStringable($str): bool
     {
-        if (is_string($str)) {
+        if (\is_string($str)) {
             return true;
         }
 
@@ -740,7 +740,7 @@ final class Violin implements \Countable
             return true;
         }
 
-        if (is_object($str) && is_callable([$str, '__toString'])) {
+        if (\is_object($str) && \is_callable([$str, '__toString'])) {
             return true;
         }
 

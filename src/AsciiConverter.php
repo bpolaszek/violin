@@ -13,15 +13,15 @@ final class AsciiConverter
         $map = self::DEFAULT_MAP;
 
         if (null !== $locale) {
-            $locale = strtolower($locale);
-            $lang = explode('_', strtr($locale, ['-' => '_']))[0];
-            $map = (self::SPECIFIC_MAPS[$lang] ?? []) + $map;
+            $locale = \strtolower($locale);
+            $lang = \explode('_', \strtr($locale, ['-' => '_']))[0];
+            $map = \array_replace($map, (self::SPECIFIC_MAPS[$lang] ?? []));
         }
 
-        $asciized = strtr($string, $map);
+        $asciized = \strtr($string, $map);
 
         if (null !== $replaceUnsupportedBy) {
-            $asciized = preg_replace('/[^\x20-\x7E]/u', $replaceUnsupportedBy, $asciized);
+            $asciized = \preg_replace('/[^\x20-\x7E]/u', $replaceUnsupportedBy, $asciized);
         }
 
         return $asciized;
