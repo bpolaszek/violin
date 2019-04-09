@@ -493,7 +493,7 @@ final class Violin implements \Countable
      * @param string $needle
      * @param int    $offset
      * @param bool   $caseSensitive
-     * @return bool|false|int
+     * @return bool|int
      */
     public function indexOf(string $needle, int $offset = 0, bool $caseSensitive = true)
     {
@@ -506,7 +506,7 @@ final class Violin implements \Countable
     /**
      * @param string $needle
      * @param int    $offset
-     * @return bool|false|int
+     * @return bool|int
      */
     public function indexOfLast(string $needle, int $offset = 0, bool $caseSensitive = false)
     {
@@ -523,7 +523,7 @@ final class Violin implements \Countable
      */
     public function contains(string $needle, bool $caseSensitive = false): bool
     {
-        return false !== $this->indexOf($needle, $caseSensitive);
+        return false !== $this->indexOf($needle, 0, $caseSensitive);
     }
 
     /**
