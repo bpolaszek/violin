@@ -789,6 +789,15 @@ final class Violin implements \Countable
      */
     private function isMultibyte(): bool
     {
-        return self::ASCII !== $this->getEncoding();
+        if (null !== $this->encoding) {
+            return self::ASCII !== $this->encoding;
+        }
+
+        if (0 === preg_match('/[^\x20-\x7f]/', $this->str)) {
+            $this->encoding = self::ASCII;
+            return false;
+        }
+
+        return true;
     }
 }
